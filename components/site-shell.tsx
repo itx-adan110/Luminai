@@ -4,14 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Menu, Search, X } from "lucide-react";
-
-const nav = [
-  ["AI", "/ai"],
-  ["Education", "/education"],
-  ["Movies", "/movies"],
-  ["Music", "/music"],
-  ["Portfolio", "/portfolio"],
-] as const;
+import { platformSections } from "@/lib/platform";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -33,7 +26,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         </Link>
         <a className="skip-link" href="#main-content">Skip to content</a>
         <nav id="primary-navigation" className={`nav ${open ? "nav-open" : ""}`} aria-label="Primary navigation">
-          {nav.map(([label, href]) => <Link key={href} className={pathname.startsWith(href) ? "active" : ""} href={href}>{label}</Link>)}
+          {platformSections.map(({ label, href }) => <Link key={href} className={pathname.startsWith(href) ? "active" : ""} href={href}>{label.replace("Luminai ", "")}</Link>)}
         </nav>
         <div className="top-actions">
           <Link className="icon-button" href="/search" aria-label="Search Luminai"><Search size={19} /></Link>
