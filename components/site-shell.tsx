@@ -31,7 +31,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         <Link className="brand" href="/" aria-label="Luminai home">
           <span className="brand-mark">L</span><span>Luminai</span>
         </Link>
-        <nav className={`nav ${open ? "nav-open" : ""}`} aria-label="Primary navigation">
+        <a className="skip-link" href="#main-content">Skip to content</a>
+        <nav id="primary-navigation" className={`nav ${open ? "nav-open" : ""}`} aria-label="Primary navigation">
           {nav.map(([label, href]) => <Link key={href} className={pathname.startsWith(href) ? "active" : ""} href={href}>{label}</Link>)}
         </nav>
         <div className="top-actions">
