@@ -9,6 +9,8 @@ const MAX_CONTENT_LENGTH = 12000;
 
 export async function POST(request: Request) {
   try {
+    const declaredLength = Number(request.headers.get("content-length") || "0");
+    if (Number.isFinite(declaredLength) && declaredLength > 200_000) return NextResponse.json({ error: "Request is too large." }, { status: 413 });
     if (!process.env.OPENAI_API_KEY) return NextResponse.json({ error: "AI service is not configured yet." }, { status: 503 });
 
     let body: unknown;
