@@ -1,5 +1,7 @@
 "use client";
 
+import styles from "./page.module.css";
+
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { AlertCircle, Bot, Check, Copy, Plus, Send } from "lucide-react";
 
@@ -84,7 +86,7 @@ export default function AIPage() {
           <div ref={endRef} />
         </div>}
 
-      {error && <div className="chat-error" role="alert"><AlertCircle size={17}/><span>{error}</span><button onClick={() => setError("")} aria-label="Dismiss error">×</button></div>}
+      {error && <div className={styles.chatError} role="alert"><AlertCircle size={17}/><span>{error}</span><button onClick={() => setError("")} aria-label="Dismiss error">×</button></div>}
 
       <form className="composer" onSubmit={sendMessage}>
         <textarea value={input} onChange={e => setInput(e.target.value)} placeholder="Message Luminai…" rows={1} aria-label="Message Luminai" disabled={loading}
